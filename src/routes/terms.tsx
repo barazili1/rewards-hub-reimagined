@@ -4,7 +4,6 @@ import {
   BadgeCheck,
   Check,
   Copy,
-  Download,
   Send,
   Ticket,
   UserRound,
@@ -15,15 +14,13 @@ import { TopBar } from "@/components/dark-vip/TopBar";
 import { BrandName } from "@/components/dark-vip/BrandName";
 import {
   DEPOSIT,
-  DOWNLOAD_URL,
   PLATFORM_LOGO,
   PLATFORM_NAME,
   PROMO_CODE,
   REGISTER_URL,
 } from "@/lib/platform";
-import logoApple from "@/assets/logo-apple-game.png";
-import logoCrash from "@/assets/logo-crash-game.png";
-import gameMines from "@/assets/game-mines.jpg";
+import iconApple from "@/assets/icon-apple.png";
+import iconCrash from "@/assets/icon-crash.png";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -32,12 +29,12 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "أكمل خطوات تفعيل حسابك على Xparibet: التحميل، التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
+          "أكمل خطوات تفعيل حسابك على Xparibet: التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
       },
       { property: "og:title", content: `شروط تفعيل العضوية — ${PLATFORM_NAME}` },
       {
         property: "og:description",
-        content: "أربع خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
+        content: "ثلاث خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,12 +44,11 @@ export const Route = createFileRoute("/terms")({
   component: TermsPage,
 });
 
-type GameKey = "mines" | "apple" | "crash";
+type GameKey = "apple" | "crash";
 
 const GAMES: { key: GameKey; label: string; img: string; to: string }[] = [
-  { key: "crash", label: "Crash", img: logoCrash, to: "/crash" },
-  { key: "apple", label: "Apple", img: logoApple, to: "/apple" },
-  { key: "mines", label: "Mines", img: gameMines, to: "/mines" },
+  { key: "crash", label: "Crash", img: iconCrash, to: "/crash" },
+  { key: "apple", label: "Apple", img: iconApple, to: "/apple" },
 ];
 
 function Step({
@@ -144,30 +140,13 @@ function TermsPage() {
             أكمل الشروط لتفعيل عضويتك
           </h1>
           <p className="mt-2 text-xs text-muted-foreground">
-            أربع خطوات بسيطة — أقل من دقيقتين
+            ثلاث خطوات بسيطة — أقل من دقيقتين
           </p>
         </section>
 
         <ol className="mt-8 space-y-4">
           <Step
             index={1}
-            badge="OFFICIAL APP"
-            title={`تحميل تطبيق ${PLATFORM_NAME}`}
-            description="حمّل التطبيق الرسمي للمنصة على أندرويد أو آيفون."
-          >
-            <a
-              href={DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-foreground font-display text-sm font-bold text-background transition-transform active:scale-[0.98]"
-            >
-              <Download className="size-4" />
-              تحميل التطبيق
-            </a>
-          </Step>
-
-          <Step
-            index={2}
             badge="PROMO CODE"
             title="التسجيل بالبروموكود"
             description="انسخ البروموكود واستخدمه أثناء إنشاء الحساب لربطه بالتطبيق."
@@ -210,7 +189,7 @@ function TermsPage() {
           </Step>
 
           <Step
-            index={3}
+            index={2}
             badge="DEPOSIT"
             title="إيداع التفعيل"
             description="الحد الأدنى للإيداع لتنشيط المحفظة (الأموال تبقى في رصيدك)."
@@ -239,7 +218,7 @@ function TermsPage() {
           </Step>
 
           <Step
-            index={4}
+            index={3}
             badge="VERIFY"
             title="إدخال الـ ID واختيار اللعبة"
             description={`أدخل رقم حسابك في ${PLATFORM_NAME} ثم اختر اللعبة التي تريد التوقعات لها.`}
@@ -265,7 +244,7 @@ function TermsPage() {
             </div>
 
             {idValid ? (
-              <div className="animate-rise mt-4 grid grid-cols-3 gap-2.5">
+              <div className="animate-rise mt-4 grid grid-cols-2 gap-3">
                 {GAMES.map((g) => (
                   <button
                     key={g.key}
