@@ -1,8 +1,8 @@
 export function BrandName({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-display font-extrabold tracking-[0.25em] ${className}`}>
-      <span className="text-gold">DARK</span>
-      <span className="text-foreground"> BET</span>
+    <span className={`font-display font-extrabold tracking-[0.22em] ${className}`}>
+      <span className="text-gold">XPARI</span>
+      <span className="text-foreground">BET</span>
     </span>
   );
 }
