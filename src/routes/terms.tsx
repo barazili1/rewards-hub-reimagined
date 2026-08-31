@@ -34,7 +34,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:title", content: `شروط تفعيل العضوية — ${PLATFORM_NAME}` },
       {
         property: "og:description",
-        content: "ثلاث خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
+        content: "أربع خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -140,7 +140,7 @@ function TermsPage() {
             أكمل الشروط لتفعيل عضويتك
           </h1>
           <p className="mt-2 text-xs text-muted-foreground">
-            ثلاث خطوات بسيطة — أقل من دقيقتين
+            أربع خطوات بسيطة — أقل من دقيقتين
           </p>
         </section>
 
@@ -197,7 +197,7 @@ function TermsPage() {
 
 
           <Step
-            index={2}
+            index={3}
             badge="DEPOSIT"
             title="إيداع التفعيل"
             description="الحد الأدنى للإيداع لتنشيط المحفظة (الأموال تبقى في رصيدك)."
@@ -226,7 +226,7 @@ function TermsPage() {
           </Step>
 
           <Step
-            index={3}
+            index={4}
             badge="VERIFY"
             title="إدخال الـ ID واختيار اللعبة"
             description={`أدخل رقم حسابك في ${PLATFORM_NAME} ثم اختر اللعبة التي تريد التوقعات لها.`}
