@@ -147,8 +147,25 @@ function TermsPage() {
         <ol className="mt-8 space-y-4">
           <Step
             index={1}
+            badge="REGISTER"
+            title="التسجيل في المنصة"
+            description={`أنشئ حسابك في ${PLATFORM_NAME} من الرابط الرسمي أولاً.`}
+          >
+            <a
+              href={REGISTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gold flex h-12 w-full items-center justify-center gap-2 rounded-xl font-display text-sm font-bold text-primary-foreground transition-transform active:scale-[0.98]"
+            >
+              <UserRound className="size-4" />
+              التسجيل في {PLATFORM_NAME}
+            </a>
+          </Step>
+
+          <Step
+            index={2}
             badge="PROMO CODE"
-            title="التسجيل بالبروموكود"
+            title="استخدام البروموكود"
             description="انسخ البروموكود واستخدمه أثناء إنشاء الحساب لربطه بالتطبيق."
           >
             <div className="flex h-14 w-full items-center gap-3 rounded-xl border border-dashed border-primary/40 bg-primary/5 px-3">
@@ -176,17 +193,8 @@ function TermsPage() {
                 )}
               </button>
             </div>
-
-            <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gold mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl font-display text-sm font-bold text-primary-foreground transition-transform active:scale-[0.98]"
-            >
-              <UserRound className="size-4" />
-              التسجيل في {PLATFORM_NAME}
-            </a>
           </Step>
+
 
           <Step
             index={2}
