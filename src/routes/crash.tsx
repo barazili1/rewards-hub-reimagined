@@ -132,7 +132,7 @@ function CrashPage() {
         <section className="mt-4 flex gap-3 overflow-x-auto pb-2">
           <div
             className="surface-card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-[24px] p-4"
-            style={{ width: 220, height: 150, minWidth: 220, minHeight: 150 }}
+            style={{ width: 350, height: 200, minWidth: 350, minHeight: 200 }}
           >
             <div
               aria-hidden
@@ -155,8 +155,8 @@ function CrashPage() {
               </span>
             </div>
             <p
-              className={`relative mx-auto rounded-2xl bg-white px-4 py-1 text-center font-display text-[42px] font-extrabold leading-none tabular-nums ${
-                value === null ? "text-primary/30" : "text-primary"
+              className={`relative mx-auto bg-gradient-to-b from-primary via-primary/80 to-white bg-clip-text px-4 py-1 text-center font-display text-[56px] font-extrabold leading-none tabular-nums text-transparent ${
+                value === null ? "opacity-40" : ""
               }`}
             >
               {value === null ? "—" : `${value.toFixed(2)}x`}
@@ -170,13 +170,13 @@ function CrashPage() {
             <div
               key={`card-${h}-${i}`}
               className="surface-card flex shrink-0 flex-col items-center justify-center gap-2 rounded-[24px] p-4"
-              style={{ width: 220, height: 150, minWidth: 220, minHeight: 150 }}
+              style={{ width: 350, height: 200, minWidth: 350, minHeight: 200 }}
             >
               <p className="font-display text-[8px] tracking-[0.3em] text-muted-foreground">
                 ROUND #{history.length - i}
               </p>
               <p
-                className="rounded-2xl bg-white px-3 py-1 font-display text-[38px] font-extrabold leading-none tabular-nums text-primary"
+                className="bg-gradient-to-b from-primary via-primary/80 to-white bg-clip-text px-3 py-1 font-display text-[52px] font-extrabold leading-none tabular-nums text-transparent"
               >
                 {h.toFixed(2)}x
               </p>
