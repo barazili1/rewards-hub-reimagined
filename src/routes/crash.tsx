@@ -195,7 +195,7 @@ function CrashPage() {
           <button
             onClick={start}
             disabled={spinning}
-            className="flex h-13 items-center justify-center gap-2 rounded-2xl bg-foreground py-4 font-display text-sm font-extrabold text-background shadow-lg transition-transform active:scale-[0.98] disabled:opacity-60"
+            className="flex items-center justify-center gap-2 rounded-2xl bg-foreground py-4 font-display text-sm font-extrabold text-background shadow-lg transition-transform active:scale-[0.98] disabled:opacity-60"
           >
             {spinning ? (
               <Rocket className="size-4 animate-pulse" />
