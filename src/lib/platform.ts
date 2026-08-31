@@ -1,4 +1,4 @@
-export const PLATFORM_NAME = "Xparibet";
+export const PLATFORM_NAME = "اسكربت ايران";
 export const PLATFORM_LOGO =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2alrP7_bbU8pzJoLEywNHe8Ny8C5PV0OUE0pGoT2eRQ&s=10";
 export const REGISTER_URL =

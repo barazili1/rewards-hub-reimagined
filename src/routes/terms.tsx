@@ -29,7 +29,7 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "أكمل خطوات تفعيل حسابك على Xparibet: التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
+          "أكمل خطوات تفعيل حسابك على اسكربت ايران: التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
       },
       { property: "og:title", content: `شروط تفعيل العضوية — ${PLATFORM_NAME}` },
       {

@@ -15,7 +15,7 @@ export const Route = createFileRoute("/crash")({
       {
         name: "description",
         content:
-          "لوحة إشارات لعبة الطيارة Crash داخل Xparibet: توقّع لحظة السحب مع نسبة أمان لكل جولة.",
+          "لوحة إشارات لعبة الطيارة Crash داخل اسكربت ايران: توقّع لحظة السحب مع نسبة أمان لكل جولة.",
       },
       { property: "og:title", content: `Crash — ${PLATFORM_NAME}` },
       {

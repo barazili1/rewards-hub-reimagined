@@ -22,7 +22,7 @@ export const Route = createFileRoute("/apple")({
       {
         name: "description",
         content:
-          "لوحة إشارات Apple of Fortune داخل Xparibet: 10 صفوف مع الأودد الخاص بكل صف.",
+          "لوحة إشارات Apple of Fortune داخل اسكربت ايران: 10 صفوف مع الأودد الخاص بكل صف.",
       },
       { property: "og:title", content: `Apple of Fortune — ${PLATFORM_NAME}` },
       {
