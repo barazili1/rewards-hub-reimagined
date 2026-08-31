@@ -1,21 +1,21 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logo from "@/assets/brand-logo.jpg";
+import { PLATFORM_LOGO } from "@/lib/platform";
 import { BrandName } from "@/components/dark-vip/BrandName";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DARK BET — نادي التوقعات الحصري" },
+      { title: "Xparibet — نادي التوقعات الحصري" },
       {
         name: "description",
         content:
-          "DARK BET تطبيق حصري للأعضاء بثيم أسود وذهبي: خطوات تفعيل بسيطة وتجربة أنيقة.",
+          "Xparibet تطبيق حصري للأعضاء بثيم أسود وأحمر: خطوات تفعيل بسيطة وتجربة أنيقة.",
       },
-      { property: "og:title", content: "DARK BET — نادي التوقعات الحصري" },
+      { property: "og:title", content: "Xparibet — نادي التوقعات الحصري" },
       {
         property: "og:description",
-        content: "دخول حصري لأعضاء DARK BET.",
+        content: "دخول حصري لأعضاء Xparibet.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -67,10 +67,10 @@ function Splash() {
             className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-primary/70 [animation-duration:3.5s]"
           />
           <img
-            src={logo}
-            alt="شعار DARK BET"
-            width={816}
-            height={816}
+            src={PLATFORM_LOGO}
+            alt="شعار Xparibet"
+            width={256}
+            height={256}
             className="animate-glow-pulse size-28 rounded-full object-contain"
           />
         </div>
@@ -104,7 +104,7 @@ function Splash() {
       </div>
 
       <p className="absolute bottom-8 text-[10px] tracking-[0.35em] text-muted-foreground/70">
-        DARK BET © {new Date().getFullYear()}
+        Xparibet © {new Date().getFullYear()}
       </p>
     </main>
   );

@@ -9,15 +9,15 @@ import { formatRemaining, isAdmin } from "@/lib/session";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "لوحة تحكم الأكواد — DARK BET" },
+      { title: "لوحة تحكم الأكواد — Xparibet" },
       {
         name: "description",
-        content: "لوحة الأدمن لإنشاء أكواد الدخول وتحديد مدة صلاحيتها في DARK BET.",
+        content: "لوحة الأدمن لإنشاء أكواد الدخول وتحديد مدة صلاحيتها في Xparibet.",
       },
-      { property: "og:title", content: "لوحة تحكم الأكواد — DARK BET" },
+      { property: "og:title", content: "لوحة تحكم الأكواد — Xparibet" },
       {
         property: "og:description",
-        content: "إنشاء وإدارة أكواد الدخول المؤقتة لأعضاء DARK BET.",
+        content: "إنشاء وإدارة أكواد الدخول المؤقتة لأعضاء Xparibet.",
       },
     ],
   }),
@@ -116,7 +116,7 @@ function AdminPage() {
       <main className="mx-auto w-full max-w-xl px-5 pb-16 pt-6">
         <header className="text-center">
           <p className="font-display text-[10px] tracking-[0.45em] text-primary">
-            DARK BET PANEL
+            Xparibet PANEL
           </p>
           <h1 className="mt-2 font-display text-2xl font-extrabold text-foreground">
             لوحة تحكم الأكواد
@@ -140,7 +140,7 @@ function AdminPage() {
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
-                placeholder="مثال : DARK-7738-VIP"
+                placeholder="مثال : XP-7738-VIP"
                 className="h-12 w-full bg-transparent font-display text-sm tracking-[0.1em] outline-none placeholder:text-muted-foreground"
               />
             </div>
