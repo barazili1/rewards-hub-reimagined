@@ -5,18 +5,18 @@ import { TopBar } from "@/components/dark-vip/TopBar";
 import { LiveWins } from "@/components/dark-vip/LiveWins";
 import { BrandName } from "@/components/dark-vip/BrandName";
 import { CodeTimer, useCodeGuard } from "@/components/dark-vip/CodeTimer";
-import logo from "@/assets/brand-logo.jpg";
+import { PLATFORM_LOGO } from "@/lib/platform";
 
 export const Route = createFileRoute("/mines")({
   head: () => ({
     meta: [
-      { title: "Mines — DARK BET" },
+      { title: "Mines — Xparibet" },
       {
         name: "description",
         content:
-          "لوحة إشارات Mines داخل DARK BET: شبكة 5×5 مع اختيار عدد الألماس.",
+          "لوحة إشارات Mines داخل Xparibet: شبكة 5×5 مع اختيار عدد الألماس.",
       },
-      { property: "og:title", content: "Mines — DARK BET" },
+      { property: "og:title", content: "Mines — Xparibet" },
       {
         property: "og:description",
         content: "اختر عدد الألماس واضغط بدأ لعرض إشارات Mines.",
@@ -55,13 +55,13 @@ function MinesPage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar backTo="/" usersOnline={4821} />
+      <TopBar backTo="/terms" usersOnline={4821} />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
         <section className="mt-6 flex flex-col items-center">
           <img
-            src={logo}
-            alt="شعار DARK BET"
+            src={PLATFORM_LOGO}
+            alt="شعار Xparibet"
             width={112}
             height={112}
             className="size-20 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.35)]"
