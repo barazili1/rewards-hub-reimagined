@@ -12,23 +12,27 @@ import {
   setAppleSignals,
 } from "@/lib/firebase";
 import { APPLE_SIGNAL_CODE } from "@/lib/session";
-import logo from "@/assets/brand-logo.jpg";
+import { PLATFORM_NAME } from "@/lib/platform";
+import logoApple from "@/assets/logo-apple-game.png";
 
 export const Route = createFileRoute("/apple")({
   head: () => ({
     meta: [
-      { title: "Apple of Fortune — DARK BET" },
+      { title: `Apple of Fortune — ${PLATFORM_NAME}` },
       {
         name: "description",
         content:
-          "لوحة إشارات Apple of Fortune داخل DARK BET: 10 صفوف مع الأودد الخاص بكل صف.",
+          "لوحة إشارات Apple of Fortune داخل Xparibet: 10 صفوف مع الأودد الخاص بكل صف.",
       },
-      { property: "og:title", content: "Apple of Fortune — DARK BET" },
+      { property: "og:title", content: `Apple of Fortune — ${PLATFORM_NAME}` },
       {
         property: "og:description",
         content: "اضغط Start لعرض إشارات التفاح لكل صف.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/apple" }],
   }),
   component: ApplePage,
 });
@@ -40,11 +44,6 @@ const CELL_BAD = "https://logo12.gamer.gd/poi.png";
 // من تحت لفوق: 1.23 ... 349.43
 const ODDS = [1.23, 1.54, 1.93, 2.41, 4.02, 6.71, 11.18, 27.97, 69.93, 349.43];
 
-/** local fallback signals (m1 = bottom-left) */
-function localSignals() {
-  return generateAppleSignals();
-}
-
 function ApplePage() {
   const { session, ready } = useCodeGuard();
   const [signals, setSignals] = useState<number[] | null>(null);
@@ -55,7 +54,7 @@ function ApplePage() {
   const start = async () => {
     setBusy(true);
     try {
-      setSignals(useFirebase ? await getAppleSignals() : localSignals());
+      setSignals(useFirebase ? await getAppleSignals() : generateAppleSignals());
     } catch {
       toast.error("تعذّر تحميل التوقعات");
     } finally {
@@ -68,8 +67,7 @@ function ApplePage() {
     if (!useFirebase) return;
     setBusy(true);
     try {
-      const next = generateAppleSignals();
-      await setAppleSignals(next);
+      await setAppleSignals(generateAppleSignals());
       toast.success("تم تحديث التوقعات");
     } catch {
       toast.error("تعذّر تحديث التوقعات");
@@ -84,16 +82,16 @@ function ApplePage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar backTo="/" />
+      <TopBar backTo="/terms" usersOnline={5127} />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
         <section className="mt-6 flex flex-col items-center">
           <img
-            src={logo}
-            alt="شعار DARK BET"
-            width={112}
-            height={112}
-            className="size-20 object-contain drop-shadow-[0_0_25px_rgba(212,175,55,0.35)]"
+            src={logoApple}
+            alt="شعار لعبة التفاحة"
+            width={768}
+            height={768}
+            className="size-20 object-contain drop-shadow-[0_0_25px_rgba(229,57,53,0.45)]"
           />
           <BrandName className="mt-3 text-lg" />
           <p className="mt-1 font-display text-[10px] tracking-[0.4em] text-primary">
@@ -103,17 +101,24 @@ function ApplePage() {
 
         <CodeTimer session={session} />
 
-        <section className="surface-card mt-5 rounded-3xl p-4">
-          <div className="flex flex-col gap-2">
+        <section className="surface-card relative mt-5 overflow-hidden rounded-3xl p-4">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-12 top-1/3 size-44 rounded-full bg-primary/10 blur-3xl"
+          />
+          <div className="relative flex flex-col gap-2">
             {rowsTopDown.map((odd, rowFromTop) => {
-              const row = 9 - rowFromTop; // 0 = bottom row (m1..m5)
+              const row = 9 - rowFromTop; // 0 = bottom row
+              const active = signals !== null;
               return (
                 <div
-                  key={`${odd}-${signals ? "s" : "e"}`}
-                  className={`flex items-center justify-center gap-2 ${signals ? "cell-pop" : ""}`}
-                  style={signals ? { animationDelay: `${row * 90}ms` } : undefined}
+                  key={`${odd}-${active ? "s" : "e"}`}
+                  className={`flex items-center justify-center gap-2 rounded-2xl px-1.5 py-1 ${
+                    active ? "cell-pop bg-primary/5" : ""
+                  }`}
+                  style={active ? { animationDelay: `${row * 90}ms` } : undefined}
                 >
-                  <span className="w-14 shrink-0 text-left font-display text-[11px] font-bold text-primary">
+                  <span className="w-16 shrink-0 rounded-lg border border-primary/25 bg-primary/10 py-1 text-center font-display text-[11px] font-bold text-primary">
                     {odd.toFixed(2)}
                   </span>
                   <div className="flex gap-2">
@@ -128,7 +133,7 @@ function ApplePage() {
                       return (
                         <span
                           key={col}
-                          className="flex size-[50px] items-center justify-center overflow-hidden rounded-[12px] border border-border bg-secondary/30"
+                          className="flex size-[50px] items-center justify-center overflow-hidden rounded-[14px] border border-border bg-secondary/30"
                         >
                           <img
                             src={src}
