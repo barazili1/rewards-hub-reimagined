@@ -171,13 +171,13 @@ function CrashPage() {
             <div
               key={`card-${h}-${i}`}
               className="surface-card flex shrink-0 flex-col items-center justify-center gap-2 rounded-[24px] p-4"
-              style={{ width: 350, height: 200, minWidth: 350, minHeight: 200 }}
+              style={{ width: 400, height: 200, minWidth: 400, minHeight: 200 }}
             >
               <p className="font-display text-[8px] tracking-[0.3em] text-muted-foreground">
                 ROUND #{history.length - i}
               </p>
               <p
-                className="bg-gradient-to-b from-primary via-primary/80 to-white bg-clip-text px-3 py-1 font-display text-[52px] font-extrabold leading-none tabular-nums text-transparent"
+                className="px-3 py-1 font-display text-[56px] font-extrabold leading-none tabular-nums text-white [text-shadow:0_0_18px_color-mix(in_oklab,var(--primary)_60%,transparent)]"
               >
                 {h.toFixed(2)}x
               </p>
