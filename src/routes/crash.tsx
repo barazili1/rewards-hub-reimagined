@@ -155,8 +155,8 @@ function CrashPage() {
               </span>
             </div>
             <p
-              className={`relative mx-auto rounded-2xl bg-white px-4 py-1 text-center font-display text-[42px] font-extrabold leading-none tabular-nums ${
-                value === null ? "text-primary/30" : "text-primary"
+              className={`relative mx-auto bg-gradient-to-b from-primary via-primary/80 to-white bg-clip-text px-4 py-1 text-center font-display text-[56px] font-extrabold leading-none tabular-nums text-transparent ${
+                value === null ? "opacity-40" : ""
               }`}
             >
               {value === null ? "—" : `${value.toFixed(2)}x`}
