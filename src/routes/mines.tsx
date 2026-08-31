@@ -55,7 +55,7 @@ function MinesPage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar backTo="/login" usersOnline={4821} />
+      <TopBar backTo="/" usersOnline={4821} />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
         <section className="mt-6 flex flex-col items-center">

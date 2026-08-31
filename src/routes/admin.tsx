@@ -111,7 +111,7 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar backTo="/login" usersOnline={2481} />
+      <TopBar backTo="/" usersOnline={2481} />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16 pt-6">
         <header className="text-center">
