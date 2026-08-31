@@ -132,7 +132,7 @@ function CrashPage() {
         <section className="mt-4 flex gap-3 overflow-x-auto pb-2">
           <div
             className="surface-card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-[24px] p-4"
-            style={{ width: 220, height: 150, minWidth: 220, minHeight: 150 }}
+            style={{ width: 350, height: 200, minWidth: 350, minHeight: 200 }}
           >
             <div
               aria-hidden
