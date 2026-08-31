@@ -96,8 +96,8 @@
   --sidebar-border: oklch(0.58 0.23 27 / 18%);
   --sidebar-ring: oklch(0.58 0.23 27 / 60%);
 
-  --font-display: "Sora", "Cairo", sans-serif;
-  --font-body: "Cairo", "Sora", sans-serif;
+  --font-display: "Cairo", sans-serif;
+  --font-body: "Cairo", sans-serif;
 
   --gradient-gold: linear-gradient(135deg, oklch(0.66 0.24 27), oklch(0.45 0.19 25));
   --gradient-surface: linear-gradient(

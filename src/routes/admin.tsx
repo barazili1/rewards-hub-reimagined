@@ -9,15 +9,15 @@ import { formatRemaining, isAdmin } from "@/lib/session";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "لوحة تحكم الأكواد — Xparibet" },
+      { title: "لوحة تحكم الأكواد — اسكربت ايران" },
       {
         name: "description",
-        content: "لوحة الأدمن لإنشاء أكواد الدخول وتحديد مدة صلاحيتها في Xparibet.",
+        content: "لوحة الأدمن لإنشاء أكواد الدخول وتحديد مدة صلاحيتها في اسكربت ايران.",
       },
-      { property: "og:title", content: "لوحة تحكم الأكواد — Xparibet" },
+      { property: "og:title", content: "لوحة تحكم الأكواد — اسكربت ايران" },
       {
         property: "og:description",
-        content: "إنشاء وإدارة أكواد الدخول المؤقتة لأعضاء Xparibet.",
+        content: "إنشاء وإدارة أكواد الدخول المؤقتة لأعضاء اسكربت ايران.",
       },
     ],
   }),
@@ -116,7 +116,7 @@ function AdminPage() {
       <main className="mx-auto w-full max-w-xl px-5 pb-16 pt-6">
         <header className="text-center">
           <p className="font-display text-[10px] tracking-[0.45em] text-primary">
-            Xparibet PANEL
+            اسكربت ايران PANEL
           </p>
           <h1 className="mt-2 font-display text-2xl font-extrabold text-foreground">
             لوحة تحكم الأكواد

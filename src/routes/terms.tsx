@@ -29,12 +29,12 @@ export const Route = createFileRoute("/terms")({
       {
         name: "description",
         content:
-          "أكمل خطوات تفعيل حسابك على Xparibet: التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
+          "أكمل خطوات تفعيل حسابك على اسكربت ايران: التسجيل بالبروموكود B500، الإيداع، ثم إدخال الـ ID واختيار اللعبة.",
       },
       { property: "og:title", content: `شروط تفعيل العضوية — ${PLATFORM_NAME}` },
       {
         property: "og:description",
-        content: "ثلاث خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
+        content: "أربع خطوات سريعة لتفعيل عضويتك والدخول للتوقعات.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -140,15 +140,32 @@ function TermsPage() {
             أكمل الشروط لتفعيل عضويتك
           </h1>
           <p className="mt-2 text-xs text-muted-foreground">
-            ثلاث خطوات بسيطة — أقل من دقيقتين
+            أربع خطوات بسيطة — أقل من دقيقتين
           </p>
         </section>
 
         <ol className="mt-8 space-y-4">
           <Step
             index={1}
+            badge="REGISTER"
+            title="التسجيل في المنصة"
+            description={`أنشئ حسابك في ${PLATFORM_NAME} من الرابط الرسمي أولاً.`}
+          >
+            <a
+              href={REGISTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gold flex h-12 w-full items-center justify-center gap-2 rounded-xl font-display text-sm font-bold text-primary-foreground transition-transform active:scale-[0.98]"
+            >
+              <UserRound className="size-4" />
+              التسجيل في {PLATFORM_NAME}
+            </a>
+          </Step>
+
+          <Step
+            index={2}
             badge="PROMO CODE"
-            title="التسجيل بالبروموكود"
+            title="استخدام البروموكود"
             description="انسخ البروموكود واستخدمه أثناء إنشاء الحساب لربطه بالتطبيق."
           >
             <div className="flex h-14 w-full items-center gap-3 rounded-xl border border-dashed border-primary/40 bg-primary/5 px-3">
@@ -176,20 +193,11 @@ function TermsPage() {
                 )}
               </button>
             </div>
-
-            <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gold mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl font-display text-sm font-bold text-primary-foreground transition-transform active:scale-[0.98]"
-            >
-              <UserRound className="size-4" />
-              التسجيل في {PLATFORM_NAME}
-            </a>
           </Step>
 
+
           <Step
-            index={2}
+            index={3}
             badge="DEPOSIT"
             title="إيداع التفعيل"
             description="الحد الأدنى للإيداع لتنشيط المحفظة (الأموال تبقى في رصيدك)."
@@ -218,7 +226,7 @@ function TermsPage() {
           </Step>
 
           <Step
-            index={3}
+            index={4}
             badge="VERIFY"
             title="إدخال الـ ID واختيار اللعبة"
             description={`أدخل رقم حسابك في ${PLATFORM_NAME} ثم اختر اللعبة التي تريد التوقعات لها.`}

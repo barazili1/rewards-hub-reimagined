@@ -6,16 +6,16 @@ import { BrandName } from "@/components/dark-vip/BrandName";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Xparibet — نادي التوقعات الحصري" },
+      { title: "اسكربت ايران — نادي التوقعات الحصري" },
       {
         name: "description",
         content:
-          "Xparibet تطبيق حصري للأعضاء بثيم أسود وأحمر: خطوات تفعيل بسيطة وتجربة أنيقة.",
+          "اسكربت ايران تطبيق حصري للأعضاء بثيم أسود وأحمر: خطوات تفعيل بسيطة وتجربة أنيقة.",
       },
-      { property: "og:title", content: "Xparibet — نادي التوقعات الحصري" },
+      { property: "og:title", content: "اسكربت ايران — نادي التوقعات الحصري" },
       {
         property: "og:description",
-        content: "دخول حصري لأعضاء Xparibet.",
+        content: "دخول حصري لأعضاء اسكربت ايران.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -68,7 +68,7 @@ function Splash() {
           />
           <img
             src={PLATFORM_LOGO}
-            alt="شعار Xparibet"
+            alt="شعار اسكربت ايران"
             width={256}
             height={256}
             className="animate-glow-pulse size-28 rounded-full object-contain"
@@ -104,7 +104,7 @@ function Splash() {
       </div>
 
       <p className="absolute bottom-8 text-[10px] tracking-[0.35em] text-muted-foreground/70">
-        Xparibet © {new Date().getFullYear()}
+        اسكربت ايران © {new Date().getFullYear()}
       </p>
     </main>
   );

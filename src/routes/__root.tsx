@@ -80,10 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Xparibet" },
-      { name: "description", content: "نادي Xparibet الحصري للأعضاء." },
-      { property: "og:title", content: "Xparibet" },
-      { property: "og:description", content: "نادي Xparibet الحصري للأعضاء." },
+      { title: "اسكربت ايران" },
+      { name: "description", content: "نادي اسكربت ايران الحصري للأعضاء." },
+      { property: "og:title", content: "اسكربت ايران" },
+      { property: "og:description", content: "نادي اسكربت ايران الحصري للأعضاء." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Cairo:wght@400;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap",
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
