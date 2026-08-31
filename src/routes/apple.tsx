@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { TopBar } from "@/components/dark-vip/TopBar";
 import { LiveWins } from "@/components/dark-vip/LiveWins";
 import { BrandName } from "@/components/dark-vip/BrandName";
-import { CodeTimer, useCodeGuard } from "@/components/dark-vip/CodeTimer";
+import { useCodeGuard } from "@/components/dark-vip/CodeTimer";
 import {
   generateAppleSignals,
   getAppleSignals,
@@ -13,7 +13,7 @@ import {
 } from "@/lib/firebase";
 import { APPLE_SIGNAL_CODE } from "@/lib/session";
 import { PLATFORM_NAME } from "@/lib/platform";
-import logoApple from "@/assets/logo-apple-game.png";
+import logoApple from "@/assets/icon-apple.png";
 
 export const Route = createFileRoute("/apple")({
   head: () => ({
@@ -98,8 +98,6 @@ function ApplePage() {
             APPLE OF FORTUNE
           </p>
         </section>
-
-        <CodeTimer session={session} />
 
         <section className="surface-card relative mt-5 overflow-hidden rounded-3xl p-4">
           <div

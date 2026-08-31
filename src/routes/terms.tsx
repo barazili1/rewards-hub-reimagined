@@ -14,7 +14,6 @@ import { TopBar } from "@/components/dark-vip/TopBar";
 import { BrandName } from "@/components/dark-vip/BrandName";
 import {
   DEPOSIT,
-  DOWNLOAD_URL,
   PLATFORM_LOGO,
   PLATFORM_NAME,
   PROMO_CODE,

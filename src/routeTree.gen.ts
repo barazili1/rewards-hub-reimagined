@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppleRouteImport } from './routes/apple'
 import { Route as CrashRouteImport } from './routes/crash'
-import { Route as MinesRouteImport } from './routes/mines'
 import { Route as TermsRouteImport } from './routes/terms'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,11 +35,6 @@ const CrashRoute = CrashRouteImport.update({
   path: '/crash',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MinesRoute = MinesRouteImport.update({
-  id: '/mines',
-  path: '/mines',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -52,7 +46,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
   '/crash': typeof CrashRoute
-  '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +53,6 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
   '/crash': typeof CrashRoute
-  '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
@@ -69,15 +61,14 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
   '/crash': typeof CrashRoute
-  '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/apple' | '/crash' | '/mines' | '/terms'
+  fullPaths: '/' | '/admin' | '/apple' | '/crash' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/apple' | '/crash' | '/mines' | '/terms'
-  id: '__root__' | '/' | '/admin' | '/apple' | '/crash' | '/mines' | '/terms'
+  to: '/' | '/admin' | '/apple' | '/crash' | '/terms'
+  id: '__root__' | '/' | '/admin' | '/apple' | '/crash' | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -85,7 +76,6 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AppleRoute: typeof AppleRoute
   CrashRoute: typeof CrashRoute
-  MinesRoute: typeof MinesRoute
   TermsRoute: typeof TermsRoute
 }
 
@@ -119,13 +109,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrashRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/mines': {
-      id: '/mines'
-      path: '/mines'
-      fullPath: '/mines'
-      preLoaderRoute: typeof MinesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -141,7 +124,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AppleRoute: AppleRoute,
   CrashRoute: CrashRoute,
-  MinesRoute: MinesRoute,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
