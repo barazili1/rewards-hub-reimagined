@@ -260,3 +260,50 @@
     transform: none;
   }
 }
+
+@utility odds-glow {
+  color: #fff;
+  text-shadow:
+    0 0 12px hsl(var(--primary) / 0.9),
+    0 0 32px hsl(var(--primary) / 0.6);
+  animation: odds-glow 1.6s ease-in-out infinite;
+}
+
+@keyframes odds-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 10px hsl(var(--primary) / 0.7),
+      0 0 26px hsl(var(--primary) / 0.45);
+  }
+  50% {
+    transform: scale(1.07);
+    text-shadow:
+      0 0 20px hsl(var(--primary) / 1),
+      0 0 48px hsl(var(--primary) / 0.7);
+  }
+}
+
+@utility odds-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    hsl(var(--primary) / 0.25) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  animation: odds-sweep 2.6s linear infinite;
+}
+
+@keyframes odds-sweep {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
