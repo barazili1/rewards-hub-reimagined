@@ -258,7 +258,7 @@ function TermsPage() {
                     key={g.key}
                     type="button"
                     onClick={() => setGame(g.key)}
-                    className={`flex flex-col items-center gap-2 rounded-xl border p-3 transition-colors ${
+                    className={`flex flex-col items-center gap-2 overflow-hidden rounded-xl border p-0 transition-colors ${
                       game === g.key
                         ? "border-primary bg-primary/10 ring-2 ring-primary/50"
                         : "border-border bg-secondary/25 hover:border-primary/60"
@@ -270,9 +270,9 @@ function TermsPage() {
                       loading="lazy"
                       width={768}
                       height={768}
-                      className="size-12 rounded-lg object-contain"
+                      className="h-28 w-full object-cover"
                     />
-                    <span className="font-display text-[11px] font-bold text-foreground">
+                    <span className="w-full pb-2 text-center font-display text-[11px] font-bold text-foreground">
                       {g.label}
                     </span>
                   </button>

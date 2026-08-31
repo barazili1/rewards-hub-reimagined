@@ -1,4 +1,5 @@
 const DB = "https://arfoush1-default-rtdb.europe-west1.firebasedatabase.app";
+const SIGNAL_DB = "https://tesla-bet-default-rtdb.firebaseio.com";
 
 export type CodeEntry = {
   code: string;
@@ -46,7 +47,7 @@ export async function deleteCode(code: string): Promise<void> {
 
 /** m1..m50 values, m1 = bottom-left cell. 1 = rotten, 0 = good */
 export async function getAppleSignals(): Promise<number[]> {
-  const res = await fetch(`${DB}/m11.json?_=${Date.now()}`);
+  const res = await fetch(`${SIGNAL_DB}/m11.json?_=${Date.now()}`);
   if (!res.ok) throw new Error("failed to load signals");
   const data = (await res.json()) as Record<
     string,
@@ -77,10 +78,24 @@ export async function setAppleSignals(values: number[]): Promise<void> {
     const k = `m${i + 1}`;
     payload[k] = { [k]: String(v) };
   });
-  const res = await fetch(`${DB}/m11.json`, {
+  const res = await fetch(`${SIGNAL_DB}/m11.json`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error("failed to save signals");
+}
+
+/* ------------------------------ Crash signal ------------------------------ */
+
+export async function getCrashSignal(): Promise<number | null> {
+  const res = await fetch(`${SIGNAL_DB}/pre/hipr/hipr.json?_=${Date.now()}`);
+  if (!res.ok) throw new Error("failed to load crash signal");
+  const data = (await res.json()) as unknown;
+  const raw =
+    typeof data === "object" && data !== null
+      ? Object.values(data as Record<string, unknown>)[0]
+      : data;
+  const num = Number(raw);
+  return Number.isFinite(num) && num > 0 ? Math.round(num * 100) / 100 : null;
 }

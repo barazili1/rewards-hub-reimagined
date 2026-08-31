@@ -6,7 +6,8 @@ export type ActiveSession = {
 const KEY = "dark-vip-session";
 const ADMIN_KEY = "dark-vip-admin";
 export const ADMIN_ID = "000111000";
-export const APPLE_SIGNAL_CODE = "7ARFOUSHX11";
+export const VIP_SIGNAL_ID = "1729018123";
+export const APPLE_SIGNAL_CODE = VIP_SIGNAL_ID;
 
 export function saveSession(session: ActiveSession) {
   if (typeof window === "undefined") return;
