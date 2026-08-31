@@ -132,11 +132,12 @@ function CrashPage() {
         <section className="mt-4 flex gap-3 overflow-x-auto pb-2">
           <div
             className="surface-card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-[24px] p-4"
-            style={{ width: 350, height: 200, minWidth: 350, minHeight: 200 }}
+            style={{ width: 400, height: 200, minWidth: 400, minHeight: 200 }}
           >
+            <div aria-hidden className="odds-sweep rounded-[24px]" />
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-10 -top-10 size-36 rounded-full bg-primary/15 blur-3xl"
+              className="pointer-events-none absolute -right-10 -top-10 size-36 animate-pulse rounded-full bg-primary/20 blur-3xl"
             />
             <div className="relative flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/40 px-2 py-0.5 font-display text-[8px] font-bold tracking-[0.25em] text-muted-foreground">
@@ -150,12 +151,12 @@ function CrashPage() {
                     : "border border-border bg-secondary/40 text-muted-foreground"
                 }`}
               >
-                <Rocket className="size-3" />
+                <Rocket className={`size-3 ${spinning ? "animate-bounce" : ""}`} />
                 {spinning ? "SCAN" : "READY"}
               </span>
             </div>
             <p
-              className={`relative mx-auto bg-gradient-to-b from-primary via-primary/80 to-white bg-clip-text px-4 py-1 text-center font-display text-[56px] font-extrabold leading-none tabular-nums text-transparent ${
+              className={`odds-glow relative mx-auto px-4 py-1 text-center font-display text-[64px] font-extrabold leading-none tabular-nums ${
                 value === null ? "opacity-40" : ""
               }`}
             >
