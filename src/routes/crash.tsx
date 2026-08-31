@@ -39,7 +39,6 @@ function randomMultiplier() {
 function CrashPage() {
   const { session, ready } = useCodeGuard();
   const [value, setValue] = useState<number | null>(null);
-  const [safety, setSafety] = useState(0);
   const [history, setHistory] = useState<number[]>([]);
   const [spinning, setSpinning] = useState(false);
 
@@ -47,7 +46,6 @@ function CrashPage() {
     if (spinning) return;
     setSpinning(true);
     setValue(null);
-    setSafety(0);
     let ticks = 0;
     const id = window.setInterval(() => {
       setValue(randomMultiplier());
@@ -56,7 +54,6 @@ function CrashPage() {
         window.clearInterval(id);
         const final = randomMultiplier();
         setValue(final);
-        setSafety(Math.round(78 + Math.random() * 20));
         setHistory((h) => [final, ...h].slice(0, 8));
         setSpinning(false);
       }
@@ -65,13 +62,10 @@ function CrashPage() {
 
   const restart = () => {
     setValue(null);
-    setSafety(0);
     setHistory([]);
   };
 
   if (!ready || !session) return null;
-
-  const progress = value === null ? 0 : Math.min(100, (value / 10) * 100);
 
   return (
     <div className="min-h-screen">
