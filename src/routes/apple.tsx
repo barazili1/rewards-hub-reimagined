@@ -84,7 +84,7 @@ function ApplePage() {
 
   return (
     <div className="min-h-screen">
-      <TopBar backTo="/login" />
+      <TopBar backTo="/" />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
         <section className="mt-6 flex flex-col items-center">

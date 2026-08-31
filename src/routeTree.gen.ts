@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AppleRouteImport } from './routes/apple'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as MinesRouteImport } from './routes/mines'
 import { Route as TermsRouteImport } from './routes/terms'
 
@@ -31,11 +30,6 @@ const AppleRoute = AppleRouteImport.update({
   path: '/apple',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MinesRoute = MinesRouteImport.update({
   id: '/mines',
   path: '/mines',
@@ -51,7 +45,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
-  '/login': typeof LoginRoute
   '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
@@ -59,7 +52,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
-  '/login': typeof LoginRoute
   '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
@@ -68,23 +60,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/apple': typeof AppleRoute
-  '/login': typeof LoginRoute
   '/mines': typeof MinesRoute
   '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/apple' | '/login' | '/mines' | '/terms'
+  fullPaths: '/' | '/admin' | '/apple' | '/mines' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/apple' | '/login' | '/mines' | '/terms'
-  id: '__root__' | '/' | '/admin' | '/apple' | '/login' | '/mines' | '/terms'
+  to: '/' | '/admin' | '/apple' | '/mines' | '/terms'
+  id: '__root__' | '/' | '/admin' | '/apple' | '/mines' | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   AppleRoute: typeof AppleRoute
-  LoginRoute: typeof LoginRoute
   MinesRoute: typeof MinesRoute
   TermsRoute: typeof TermsRoute
 }
@@ -112,13 +102,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/mines': {
       id: '/mines'
       path: '/mines'
@@ -140,7 +123,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   AppleRoute: AppleRoute,
-  LoginRoute: LoginRoute,
   MinesRoute: MinesRoute,
   TermsRoute: TermsRoute,
 }

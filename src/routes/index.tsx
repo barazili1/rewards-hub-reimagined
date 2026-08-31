@@ -10,13 +10,15 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "DARK BET تطبيق حصري للأعضاء: سجّل الدخول بكودك واستمتع بتجربة أنيقة بثيم أسود وذهبي.",
+          "DARK BET تطبيق حصري للأعضاء بثيم أسود وذهبي: خطوات تفعيل بسيطة وتجربة أنيقة.",
       },
       { property: "og:title", content: "DARK BET — نادي التوقعات الحصري" },
       {
         property: "og:description",
-        content: "دخول حصري بالكود لأعضاء DARK BET.",
+        content: "دخول حصري لأعضاء DARK BET.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Splash,
@@ -31,7 +33,7 @@ function Splash() {
     const id = window.setInterval(() => {
       setProgress(Math.min(100, ((Date.now() - start) / 3000) * 100));
     }, 30);
-    const timeout = window.setTimeout(() => navigate({ to: "/login" }), 3050);
+    const timeout = window.setTimeout(() => navigate({ to: "/terms" }), 3050);
     return () => {
       window.clearInterval(id);
       window.clearTimeout(timeout);
@@ -39,37 +41,71 @@ function Splash() {
   }, [navigate]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-8">
-      <img
-        src={logo}
-        alt="شعار DARK BET"
-        width={816}
-        height={816}
-        className="animate-glow-pulse size-36 object-contain"
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-8">
+      {/* ambient gold aura */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/3 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/12 blur-[110px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-primary/8 to-transparent"
       />
 
-      <h1 className="animate-rise mt-8">
-        <BrandName className="text-4xl" />
-      </h1>
+      <div className="relative flex flex-col items-center">
+        <div className="relative flex size-44 items-center justify-center">
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full border border-primary/25"
+          />
+          <span
+            aria-hidden
+            className="absolute inset-3 rounded-full border border-primary/15"
+          />
+          <span
+            aria-hidden
+            className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-primary/70 [animation-duration:3.5s]"
+          />
+          <img
+            src={logo}
+            alt="شعار DARK BET"
+            width={816}
+            height={816}
+            className="animate-glow-pulse size-28 rounded-full object-contain"
+          />
+        </div>
 
-      <p className="animate-rise mt-3 text-[11px] tracking-[0.4em] text-muted-foreground">
-        EXCLUSIVE MEMBERS CLUB
-      </p>
+        <h1 className="animate-rise mt-9">
+          <BrandName className="text-[2.6rem]" />
+        </h1>
 
-      <div className="mt-12 w-full max-w-[240px]">
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+        <div className="animate-rise mt-4 flex items-center gap-3">
+          <span className="h-px w-10 bg-gradient-to-r from-transparent to-primary/60" />
+          <p className="text-[10px] tracking-[0.5em] text-muted-foreground">
+            EXCLUSIVE CLUB
+          </p>
+          <span className="h-px w-10 bg-gradient-to-l from-transparent to-primary/60" />
+        </div>
+      </div>
+
+      <div className="relative mt-14 w-full max-w-[260px]">
+        <div className="h-[3px] w-full overflow-hidden rounded-full bg-secondary">
           <div
             className="bg-gold shine h-full rounded-full transition-[width] duration-100 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="mt-3 flex justify-between text-[10px] tracking-widest text-muted-foreground">
-          <span>LOADING</span>
+        <div className="mt-3 flex items-center justify-between text-[10px] tracking-[0.3em] text-muted-foreground">
+          <span>جاري التحميل</span>
           <span className="font-display text-primary">
-            {Math.round(progress)}%
+            {String(Math.round(progress)).padStart(2, "0")}%
           </span>
         </div>
       </div>
+
+      <p className="absolute bottom-8 text-[10px] tracking-[0.35em] text-muted-foreground/70">
+        DARK BET © {new Date().getFullYear()}
+      </p>
     </main>
   );
 }

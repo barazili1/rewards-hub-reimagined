@@ -19,7 +19,7 @@ export function useCodeGuard() {
     const current = readSession();
     setReady(true);
     if (!current) {
-      void navigate({ to: "/login" });
+      void navigate({ to: "/" });
       return;
     }
     setSession(current);
@@ -43,7 +43,7 @@ export function CodeTimer({ session }: { session: ActiveSession }) {
         window.clearInterval(id);
         clearSession();
         void deleteCode(session.code).catch(() => {});
-        void navigate({ to: "/login" });
+        void navigate({ to: "/" });
       }
     }, 1000);
     return () => window.clearInterval(id);
