@@ -94,82 +94,14 @@ function CrashPage() {
           </p>
         </section>
 
-        <section className="surface-card relative mt-6 overflow-hidden rounded-[28px] p-6">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-14 -top-14 size-52 rounded-full bg-primary/15 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-6 bottom-6 h-24 rounded-full bg-primary/5 blur-2xl"
-          />
-
-          <div className="relative flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/40 px-2.5 py-1 font-display text-[9px] font-bold tracking-[0.25em] text-muted-foreground">
-              <Timer className="size-3 text-primary" />
-              NEXT ROUND
-            </span>
-            <span
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-display text-[9px] font-bold tracking-[0.25em] ${
-                spinning
-                  ? "border border-primary/50 bg-primary/10 text-primary"
-                  : "border border-border bg-secondary/40 text-muted-foreground"
-              }`}
-            >
-              <Rocket className="size-3" />
-              {spinning ? "SCANNING" : "READY"}
-            </span>
-          </div>
-
-          <p
-            className={`relative mt-6 text-center font-display text-[64px] font-extrabold leading-none tabular-nums transition-colors ${
-              value === null
-                ? "text-muted-foreground/30"
-                : "bg-gradient-to-b from-primary to-accent bg-clip-text text-transparent drop-shadow-[0_0_28px_oklch(0.58_0.23_27/0.35)]"
-            }`}
-          >
-            {value === null ? "—" : `${value.toFixed(2)}x`}
-          </p>
-
-          <div className="relative mt-6 h-2 w-full overflow-hidden rounded-full bg-secondary">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-200"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <div className="mt-2 flex justify-between font-display text-[9px] tracking-[0.25em] text-muted-foreground">
-            <span>1.00x</span>
-            <span>10.00x</span>
-          </div>
-
-          <div className="relative mt-6 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl border border-border bg-secondary/25 p-3 text-center">
-              <p className="font-display text-[9px] tracking-[0.25em] text-muted-foreground">
-                SAFETY
-              </p>
-              <p className="mt-1 font-display text-2xl font-extrabold text-primary tabular-nums">
-                {safety}%
-              </p>
-            </div>
-            <div className="rounded-2xl border border-border bg-secondary/25 p-3 text-center">
-              <p className="font-display text-[9px] tracking-[0.25em] text-muted-foreground">
-                ROUNDS
-              </p>
-              <p className="mt-1 font-display text-2xl font-extrabold text-foreground tabular-nums">
-                {history.length}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="surface-card mt-4 rounded-[22px] p-4">
+        <section className="mt-6">
           <div className="flex items-center gap-2">
             <ShieldCheck className="size-4 text-primary" />
             <p className="font-display text-[10px] tracking-[0.3em] text-muted-foreground">
               LAST SIGNALS
             </p>
           </div>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
+          <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
             {history.length === 0 ? (
               <span className="text-[11px] text-muted-foreground">
                 لا توجد جولات بعد
@@ -178,7 +110,7 @@ function CrashPage() {
               history.map((h, i) => (
                 <span
                   key={`${h}-${i}`}
-                  className={`cell-pop rounded-full border px-3 py-1 font-display text-[11px] font-bold ${
+                  className={`cell-pop shrink-0 rounded-full border px-3 py-1 font-display text-[11px] font-bold ${
                     h >= 2
                       ? "border-primary/50 bg-primary/10 text-primary"
                       : "border-border bg-secondary/40 text-muted-foreground"
@@ -190,6 +122,66 @@ function CrashPage() {
             )}
           </div>
         </section>
+
+        <section className="mt-4 flex gap-3 overflow-x-auto pb-2">
+          <div
+            className="surface-card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-[24px] p-4"
+            style={{ width: 220, height: 150 }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-10 -top-10 size-36 rounded-full bg-primary/15 blur-3xl"
+            />
+            <div className="relative flex items-center justify-between">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/40 px-2 py-0.5 font-display text-[8px] font-bold tracking-[0.25em] text-muted-foreground">
+                <Timer className="size-3 text-primary" />
+                NEXT
+              </span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 font-display text-[8px] font-bold tracking-[0.25em] ${
+                  spinning
+                    ? "border border-primary/50 bg-primary/10 text-primary"
+                    : "border border-border bg-secondary/40 text-muted-foreground"
+                }`}
+              >
+                <Rocket className="size-3" />
+                {spinning ? "SCAN" : "READY"}
+              </span>
+            </div>
+            <p
+              className={`relative text-center font-display text-[42px] font-extrabold leading-none tabular-nums ${
+                value === null
+                  ? "text-muted-foreground/30"
+                  : "bg-gradient-to-b from-primary to-accent bg-clip-text text-transparent"
+              }`}
+            >
+              {value === null ? "—" : `${value.toFixed(2)}x`}
+            </p>
+            <p className="relative text-center font-display text-[8px] tracking-[0.3em] text-muted-foreground">
+              ODDS
+            </p>
+          </div>
+
+          {history.map((h, i) => (
+            <div
+              key={`card-${h}-${i}`}
+              className="surface-card flex shrink-0 flex-col items-center justify-center gap-2 rounded-[24px] p-4"
+              style={{ width: 220, height: 150 }}
+            >
+              <p className="font-display text-[8px] tracking-[0.3em] text-muted-foreground">
+                ROUND #{history.length - i}
+              </p>
+              <p
+                className={`font-display text-[38px] font-extrabold leading-none tabular-nums ${
+                  h >= 2 ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                {h.toFixed(2)}x
+              </p>
+            </div>
+          ))}
+        </section>
+
 
         <div className="mt-5 grid grid-cols-2 gap-3">
           <button
