@@ -5,6 +5,9 @@ import { TopBar } from "@/components/dark-vip/TopBar";
 import { LiveWins } from "@/components/dark-vip/LiveWins";
 import { BrandName } from "@/components/dark-vip/BrandName";
 import { useCodeGuard } from "@/components/dark-vip/CodeTimer";
+import { toast } from "sonner";
+import { getCrashSignal } from "@/lib/firebase";
+import { VIP_SIGNAL_ID } from "@/lib/session";
 import { PLATFORM_NAME } from "@/lib/platform";
 import logoCrash from "@/assets/icon-crash.png";
 
@@ -31,8 +34,7 @@ export const Route = createFileRoute("/crash")({
 });
 
 function randomMultiplier() {
-  const r = Math.random();
-  const raw = r < 0.62 ? 1.2 + r * 2 : 2.4 + Math.random() * 6.5;
+  const raw = 1 + Math.random() * 5;
   return Math.round(raw * 100) / 100;
 }
 
@@ -42,20 +44,30 @@ function CrashPage() {
   const [history, setHistory] = useState<number[]>([]);
   const [spinning, setSpinning] = useState(false);
 
+  const isVip = session?.code.trim() === VIP_SIGNAL_ID;
+
   const start = () => {
     if (spinning) return;
     setSpinning(true);
     setValue(null);
+    const pending = isVip
+      ? getCrashSignal().catch(() => {
+          toast.error("تعذّر تحميل التوقع");
+          return null;
+        })
+      : Promise.resolve<number | null>(null);
     let ticks = 0;
     const id = window.setInterval(() => {
       setValue(randomMultiplier());
       ticks += 1;
       if (ticks > 16) {
         window.clearInterval(id);
-        const final = randomMultiplier();
-        setValue(final);
-        setHistory((h) => [final, ...h].slice(0, 8));
-        setSpinning(false);
+        void pending.then((remote) => {
+          const final = remote ?? randomMultiplier();
+          setValue(final);
+          setHistory((h) => [final, ...h].slice(0, 8));
+          setSpinning(false);
+        });
       }
     }, 70);
   };
@@ -73,13 +85,13 @@ function CrashPage() {
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
         <section className="mt-6 flex flex-col items-center text-center">
-          <span className="flex size-20 items-center justify-center rounded-[26px] border border-primary/30 bg-gradient-to-b from-primary/15 to-transparent">
+          <span className="flex size-28 items-center justify-center rounded-[26px] border border-primary/30 bg-gradient-to-b from-primary/15 to-transparent">
             <img
               src={logoCrash}
               alt="شعار لعبة الطيارة"
               width={512}
               height={512}
-              className="size-12 object-contain drop-shadow-[0_0_22px_oklch(0.58_0.23_27/0.55)]"
+              className="size-20 object-contain drop-shadow-[0_0_22px_oklch(0.58_0.23_27/0.55)]"
             />
           </span>
           <BrandName className="mt-3 text-lg" />
@@ -120,7 +132,7 @@ function CrashPage() {
         <section className="mt-4 flex gap-3 overflow-x-auto pb-2">
           <div
             className="surface-card relative flex shrink-0 flex-col justify-between overflow-hidden rounded-[24px] p-4"
-            style={{ width: 220, height: 150 }}
+            style={{ width: 220, height: 150, minWidth: 220, minHeight: 150 }}
           >
             <div
               aria-hidden
@@ -143,10 +155,8 @@ function CrashPage() {
               </span>
             </div>
             <p
-              className={`relative text-center font-display text-[42px] font-extrabold leading-none tabular-nums ${
-                value === null
-                  ? "text-muted-foreground/30"
-                  : "bg-gradient-to-b from-primary to-accent bg-clip-text text-transparent"
+              className={`relative mx-auto rounded-2xl bg-white px-4 py-1 text-center font-display text-[42px] font-extrabold leading-none tabular-nums ${
+                value === null ? "text-primary/30" : "text-primary"
               }`}
             >
               {value === null ? "—" : `${value.toFixed(2)}x`}
@@ -160,15 +170,13 @@ function CrashPage() {
             <div
               key={`card-${h}-${i}`}
               className="surface-card flex shrink-0 flex-col items-center justify-center gap-2 rounded-[24px] p-4"
-              style={{ width: 220, height: 150 }}
+              style={{ width: 220, height: 150, minWidth: 220, minHeight: 150 }}
             >
               <p className="font-display text-[8px] tracking-[0.3em] text-muted-foreground">
                 ROUND #{history.length - i}
               </p>
               <p
-                className={`font-display text-[38px] font-extrabold leading-none tabular-nums ${
-                  h >= 2 ? "text-primary" : "text-muted-foreground"
-                }`}
+                className="rounded-2xl bg-white px-3 py-1 font-display text-[38px] font-extrabold leading-none tabular-nums text-primary"
               >
                 {h.toFixed(2)}x
               </p>

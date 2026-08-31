@@ -91,7 +91,7 @@ function ApplePage() {
             alt="شعار لعبة التفاحة"
             width={768}
             height={768}
-            className="size-20 object-contain drop-shadow-[0_0_25px_rgba(229,57,53,0.45)]"
+            className="size-28 object-contain drop-shadow-[0_0_25px_rgba(229,57,53,0.45)]"
           />
           <BrandName className="mt-3 text-lg" />
           <p className="mt-1 font-display text-[10px] tracking-[0.4em] text-primary">
