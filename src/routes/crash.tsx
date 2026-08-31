@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Play, RotateCcw, TrendingUp } from "lucide-react";
+import { Play, Rocket, RotateCcw, ShieldCheck, Timer } from "lucide-react";
 import { TopBar } from "@/components/dark-vip/TopBar";
 import { LiveWins } from "@/components/dark-vip/LiveWins";
 import { BrandName } from "@/components/dark-vip/BrandName";
-import { CodeTimer, useCodeGuard } from "@/components/dark-vip/CodeTimer";
+import { useCodeGuard } from "@/components/dark-vip/CodeTimer";
 import { PLATFORM_NAME } from "@/lib/platform";
-import logoCrash from "@/assets/logo-crash-game.png";
+import logoCrash from "@/assets/icon-crash.png";
 
 export const Route = createFileRoute("/crash")({
   head: () => ({
@@ -47,6 +47,7 @@ function CrashPage() {
     if (spinning) return;
     setSpinning(true);
     setValue(null);
+    setSafety(0);
     let ticks = 0;
     const id = window.setInterval(() => {
       setValue(randomMultiplier());
@@ -70,57 +71,105 @@ function CrashPage() {
 
   if (!ready || !session) return null;
 
+  const progress = value === null ? 0 : Math.min(100, (value / 10) * 100);
+
   return (
     <div className="min-h-screen">
       <TopBar backTo="/terms" usersOnline={6314} />
 
       <main className="mx-auto w-full max-w-xl px-5 pb-16">
-        <section className="mt-6 flex flex-col items-center">
-          <img
-            src={logoCrash}
-            alt="شعار لعبة الطيارة"
-            width={768}
-            height={768}
-            className="size-20 object-contain drop-shadow-[0_0_25px_rgba(229,57,53,0.45)]"
-          />
+        <section className="mt-6 flex flex-col items-center text-center">
+          <span className="flex size-20 items-center justify-center rounded-[26px] border border-primary/30 bg-gradient-to-b from-primary/15 to-transparent">
+            <img
+              src={logoCrash}
+              alt="شعار لعبة الطيارة"
+              width={512}
+              height={512}
+              className="size-12 object-contain drop-shadow-[0_0_22px_oklch(0.58_0.23_27/0.55)]"
+            />
+          </span>
           <BrandName className="mt-3 text-lg" />
           <p className="mt-1 font-display text-[10px] tracking-[0.4em] text-primary">
             CRASH SIGNALS
           </p>
         </section>
 
-        <CodeTimer session={session} />
-
-        <section className="surface-card relative mt-5 overflow-hidden rounded-3xl p-6">
+        <section className="surface-card relative mt-6 overflow-hidden rounded-[28px] p-6">
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-primary/15 blur-3xl"
+            className="pointer-events-none absolute -right-14 -top-14 size-52 rounded-full bg-primary/15 blur-3xl"
           />
-          <p className="text-center font-display text-[10px] tracking-[0.4em] text-muted-foreground">
-            NEXT ROUND TARGET
-          </p>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-6 bottom-6 h-24 rounded-full bg-primary/5 blur-2xl"
+          />
+
+          <div className="relative flex items-center justify-between">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/40 px-2.5 py-1 font-display text-[9px] font-bold tracking-[0.25em] text-muted-foreground">
+              <Timer className="size-3 text-primary" />
+              NEXT ROUND
+            </span>
+            <span
+              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-display text-[9px] font-bold tracking-[0.25em] ${
+                spinning
+                  ? "border border-primary/50 bg-primary/10 text-primary"
+                  : "border border-border bg-secondary/40 text-muted-foreground"
+              }`}
+            >
+              <Rocket className="size-3" />
+              {spinning ? "SCANNING" : "READY"}
+            </span>
+          </div>
+
           <p
-            className={`mt-4 text-center font-display text-6xl font-extrabold tabular-nums ${
-              value === null ? "text-muted-foreground/40" : "text-gold"
+            className={`relative mt-6 text-center font-display text-[64px] font-extrabold leading-none tabular-nums transition-colors ${
+              value === null
+                ? "text-muted-foreground/30"
+                : "bg-gradient-to-b from-primary to-accent bg-clip-text text-transparent drop-shadow-[0_0_28px_oklch(0.58_0.23_27/0.35)]"
             }`}
           >
             {value === null ? "—" : `${value.toFixed(2)}x`}
           </p>
 
-          <div className="mt-6">
-            <div className="flex items-center justify-between font-display text-[10px] tracking-[0.3em] text-muted-foreground">
-              <span>SAFETY</span>
-              <span className="text-primary">{safety}%</span>
-            </div>
-            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-              <div
-                className="bg-gold h-full rounded-full transition-[width] duration-500"
-                style={{ width: `${safety}%` }}
-              />
-            </div>
+          <div className="relative mt-6 h-2 w-full overflow-hidden rounded-full bg-secondary">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-accent to-primary transition-[width] duration-200"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="mt-2 flex justify-between font-display text-[9px] tracking-[0.25em] text-muted-foreground">
+            <span>1.00x</span>
+            <span>10.00x</span>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <div className="relative mt-6 grid grid-cols-2 gap-3">
+            <div className="rounded-2xl border border-border bg-secondary/25 p-3 text-center">
+              <p className="font-display text-[9px] tracking-[0.25em] text-muted-foreground">
+                SAFETY
+              </p>
+              <p className="mt-1 font-display text-2xl font-extrabold text-primary tabular-nums">
+                {safety}%
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border bg-secondary/25 p-3 text-center">
+              <p className="font-display text-[9px] tracking-[0.25em] text-muted-foreground">
+                ROUNDS
+              </p>
+              <p className="mt-1 font-display text-2xl font-extrabold text-foreground tabular-nums">
+                {history.length}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="surface-card mt-4 rounded-[22px] p-4">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="size-4 text-primary" />
+            <p className="font-display text-[10px] tracking-[0.3em] text-muted-foreground">
+              LAST SIGNALS
+            </p>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             {history.length === 0 ? (
               <span className="text-[11px] text-muted-foreground">
                 لا توجد جولات بعد
@@ -146,10 +195,10 @@ function CrashPage() {
           <button
             onClick={start}
             disabled={spinning}
-            className="flex h-12 items-center justify-center gap-2 rounded-[15px] bg-foreground font-display text-sm font-extrabold text-background shadow-lg transition-transform active:scale-[0.98] disabled:opacity-60"
+            className="flex h-13 items-center justify-center gap-2 rounded-2xl bg-foreground py-4 font-display text-sm font-extrabold text-background shadow-lg transition-transform active:scale-[0.98] disabled:opacity-60"
           >
             {spinning ? (
-              <TrendingUp className="size-4 animate-pulse" />
+              <Rocket className="size-4 animate-pulse" />
             ) : (
               <Play className="size-4" />
             )}
@@ -157,7 +206,7 @@ function CrashPage() {
           </button>
           <button
             onClick={restart}
-            className="bg-gold flex h-12 items-center justify-center gap-2 rounded-[15px] font-display text-sm font-extrabold text-primary-foreground transition-transform active:scale-[0.98]"
+            className="bg-gold flex items-center justify-center gap-2 rounded-2xl py-4 font-display text-sm font-extrabold text-primary-foreground transition-transform active:scale-[0.98]"
           >
             <RotateCcw className="size-4" />
             اعاده بدأ
