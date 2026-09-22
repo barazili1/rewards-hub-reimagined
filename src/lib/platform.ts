@@ -4,7 +4,7 @@ export const PLATFORM_LOGO =
 export const REGISTER_URL =
   "https://xp-aff.com/L?tag=d_5244461m_64821c_site&site=5244461&ad=64821&r=registration";
 export const DOWNLOAD_URL = REGISTER_URL;
-export const PROMO_CODE = "B500";
+export const PROMO_CODE = "BL2025";
 export const DEPOSIT = [
   { symbol: "£", value: "220", unit: "EGP", note: "جنيه مصري" },
   { symbol: "$", value: "5", unit: "USD", note: "دولار" },
